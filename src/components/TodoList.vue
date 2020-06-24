@@ -3,7 +3,10 @@
     <div class="list-box">
       <span>오늘의 할일</span>
       <ul>
-        <li v-for="(item, index) in todoList" :key="index">{{item}}</li>
+        <li v-for="(item, index) in todoList" :key="index">
+          {{item}}
+          <button @click="removeBtn(item)">삭제</button>
+        </li>
       </ul>
     </div>
   </div>
@@ -11,7 +14,12 @@
 
 <script>
 export default {
-  props: ["todoList"]
+  props: ["todoList"],
+  methods: {
+    removeBtn(item) {
+      this.$emit("itemid", item);
+    }
+  }
 };
 </script>
 
