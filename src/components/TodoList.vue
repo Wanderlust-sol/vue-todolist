@@ -2,9 +2,10 @@
   <div>
     <div class="list-box">
       <span>오늘의 할일</span>
+      {{ $store.state.items }}
       <ul>
         <li v-for="(item, index) in todoList" :key="index">
-          {{item}}
+          {{ item }}
           <button @click="editBtn(item, index)">수정</button>
           <button @click="removeBtn(item)">삭제</button>
         </li>
@@ -24,8 +25,8 @@ export default {
     },
     removeBtn(item) {
       this.$emit("itemid", item);
-    }
-  }
+    },
+  },
 };
 </script>
 
