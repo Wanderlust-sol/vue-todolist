@@ -2,9 +2,8 @@
   <div>
     <div class="list-box">
       <span>오늘의 할일</span>
-      {{ $store.state.items }}
       <ul>
-        <li v-for="(item, index) in todoList" :key="index">
+        <li v-for="(item, index) in getItem" :key="index">
           {{ item }}
           <button @click="editBtn(item, index)">수정</button>
           <button @click="removeBtn(item)">삭제</button>
@@ -16,15 +15,17 @@
 
 <script>
 import { EventBus } from "@/event-bus";
+import { mapGetters } from "vuex";
 
 export default {
-  props: ["todoList"],
+  computed: mapGetters(["getItem"]),
   methods: {
     editBtn(item, idx) {
       EventBus.$emit("edititem", item, idx);
     },
     removeBtn(item) {
-      this.$emit("itemid", item);
+      //this.$emit("itemid", item);
+      this.$store.commit("removeItem", item);
     },
   },
 };
