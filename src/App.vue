@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <TodoInput v-on:addlist="addList"></TodoInput>
-    <TodoList :todoList="items" v-on:itemid="removeList"></TodoList>
+    <TodoInput v-on:addlist="addList">hi</TodoInput>
+    <TodoList v-on:itemid="removeList"></TodoList>
   </div>
 </template>
 
@@ -13,20 +13,21 @@ export default {
   components: { TodoInput, TodoList },
   data() {
     return {
-      items: []
+      items: [], //vuex 사용시 사용되지 않는 data
     };
   },
   methods: {
+    //vuex 사용시 사용되지 않는 함수
     addList(data) {
       this.items.push(data);
-      console.log(this.items);
     },
+    //vuex 사용시 사용되지 않는 함수
     removeList(item) {
       let arr = this.items;
-      const newItems = arr.filter(todo => todo !== item);
+      const newItems = arr.filter((todo) => todo !== item);
       this.items = newItems;
-    }
-  }
+    },
+  },
 };
 </script>
 
